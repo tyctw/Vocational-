@@ -1,0 +1,650 @@
+<html><head><base href="https://vocational-studies.edu/"><title>台灣技職教育群科與科別詳細介紹</title><style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  
+  :root {
+    --primary-color: #3498db;
+    --secondary-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --card-bg-color: #ffffff;
+    --accent-color: #f39c12;
+    --success-color: #2ecc71;
+  }
+  
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  header {
+    background: linear-gradient(135deg, var(--primary-color), #2980b9);
+    color: white;
+    text-align: center;
+    padding: 6em 2em;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    animation: pulse 15s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+  
+  h1, h2, h3, h4 {
+    margin: 0;
+    position: relative;
+  }
+  
+  h1 {
+    font-size: 3.5em;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  
+  .intro {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    padding: 25px;
+    background-color: rgba(52, 152, 219, 0.1);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  
+  .intro::before {
+    content: '🎓';
+    font-size: 2.5em;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background-color: var(--card-bg-color);
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .category {
+    margin-bottom: 40px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .category::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  .category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+  
+  .category h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+  
+  .group {
+    margin-bottom: 30px;
+    background-color: #f7f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .group:hover {
+    background-color: #e8f4f8;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .group h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5em;
+  }
+  
+  .subjects {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .subject {
+    background-color: rgba(243, 156, 18, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
+  .subject:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: #FFFFFF;
+  }
+  
+  .personality, .learning-content {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f6f3;
+    border-radius: 8px;
+    font-size: 0.9em;
+  }
+  
+  .personality h4, .learning-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+  }
+  
+  .note {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f6f7;
+    border-radius: 12px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      padding: 3em 1em;
+    }
+    
+    h1 {
+      font-size: 2.5em;
+    }
+    
+    main {
+      padding: 20px;
+    }
+    
+    .category {
+      padding: 20px;
+    }
+    
+    .subjects {
+      flex-direction: column;
+    }
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: var(--success-color);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  
+  /* 新增的美化樣式 */
+  body {
+    background-image: url('https://example.com/subtle-patterns.png');
+    background-repeat: repeat;
+  }
+  
+  .category {
+    border: 1px solid #e0e0e0;
+  }
+  
+  .group {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .group::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 20px;
+    border-color: transparent transparent var(--accent-color) transparent;
+    opacity: 0.5;
+  }
+  
+  .personality, .learning-content {
+    border-left: 3px solid var(--primary-color);
+  }
+  
+  .subject {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .subject::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .subject:hover::after {
+    opacity: 1;
+  }
+  
+  .btn {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn::after {
+    content: '→';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .btn:hover::after {
+    right: 15px;
+    opacity: 1;
+  }
+  
+  </style></head><body>
+    <header>
+      <h1>台灣技職教育群科與科別詳細介紹</h1>
+    </header>
+    <main>
+      <p class="intro">台灣的技職教育體系豐富多元，為學生提供了廣泛的學習選擇。本頁面匯集了各大類別下的群科和相應的科別，以及適合就讀這些類科的性格特質、優點，並新增了各科須學習的主要內容。這將幫助您更全面地了解技職教育的內容，並找到最適合自己的發展方向！</p>
+  
+      <div class="category">
+        <h2>工業類</h2>
+        
+        <div class="group">
+          <h3>機械群</h3>
+          <div class="subjects">
+            <span class="subject">機械科</span>
+            <span class="subject">鑄造科</span>
+            <span class="subject">板金科</span>
+            <span class="subject">機械木模科</span>
+            <span class="subject">配管科</span>
+            <span class="subject">模具科</span>
+            <span class="subject">機電科</span>
+            <span class="subject">製圖科</span>
+            <span class="subject">生物產業機電科</span>
+            <span class="subject">電腦機械製圖科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>邏輯思維強、喜歡動手操作、對機械原理感興趣、細心、耐心、有空間感。</p>
+            <h4>優點：</h4>
+            <p>解決問題能力強、善於分析複雜系統、具備實用技能、適應力強。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>機械設計、機械製造、機械原理、機械加工、電腦輔助繪圖與製造、自動化技術、材料科學、品質管理等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>動力機械群</h3>
+          <div class="subjects">
+            <span class="subject">汽車科</span>
+            <span class="subject">重機科</span>
+            <span class="subject">飛機修護科</span>
+            <span class="subject">動力機械科</span>
+            <span class="subject">農業機械科</span>
+            <span class="subject">軌道車輛科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>對機械有熱情、喜歡解決問題、注重細節、有耐心、善於團隊合作。</p>
+            <h4>優點：</h4>
+            <p>動手能力強、技術性思維、適應新技術能力佳、具備專業診斷能力。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>引擎原理、底盤系統、電系系統、車輛診斷與維修、汽車電子學、車輛空調系統、飛機結構與系統、農業機械原理與維修等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>電機與電子群</h3>
+          <div class="subjects">
+            <span class="subject">資訊科</span>
+            <span class="subject">電子科</span>
+            <span class="subject">控制科</span>
+            <span class="subject">電機科</span>
+            <span class="subject">冷凍空調科</span>
+            <span class="subject">航空電子科</span>
+            <span class="subject">電機空調科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>邏輯思維強、喜歡解決問題、對科技有興趣、細心、有創意、適應力強。</p>
+            <h4>優點：</h4>
+            <p>分析能力強、具備前沿技術知識、創新能力強、擅長系統性思考。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>電路學、電子學、數位邏輯、微處理機、程式設計、自動控制、電機機械、冷凍空調原理、航電系統等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>化工群</h3>
+          <div class="subjects">
+            <span class="subject">化工科</span>
+            <span class="subject">紡織科</span>
+            <span class="subject">染整科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>細心、有耐心、喜歡實驗、對科學有濃厚興趣、具有安全意識。</p>
+            <h4>優點：</h4>
+            <p>實驗操作能力強、分析能力佳、對化學原理理解深入、具備創新思維。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>普通化學、有機化學、分析化學、物理化學、化工單元操作、化工裝置、紡織原理、染色技術、纖維材料學等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>土木與建築群</h3>
+          <div class="subjects">
+            <span class="subject">建築科</span>
+            <span class="subject">土木科</span>
+            <span class="subject">消防工程科</span>
+            <span class="subject">空間測繪科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>空間感強、有創意、細心、喜歡設計、具備團隊合作精神、注重細節。</p>
+            <h4>優點：</h4>
+            <p>設計能力強、具備工程思維、善於解決複雜問題、有良好的空間規劃能力。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>工程力學、結構學、建築設計、營建管理、測量學、土木施工、消防安全工程、空間資訊技術等。</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="category">
+        <h2>商業類</h2>
+        
+        <div class="group">
+          <h3>商業與管理群</h3>
+          <div class="subjects">
+            <span class="subject">商業經營科</span>
+            <span class="subject">國際貿易科</span>
+            <span class="subject">會計事務科</span>
+            <span class="subject">資料處理科</span>
+            <span class="subject">不動產事務科</span>
+            <span class="subject">電子商務科</span>
+            <span class="subject">流通管理科</span>
+            <span class="subject">農產行銷科</span>
+            <span class="subject">航運管理科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>善於溝通、組織能力強、具有商業頭腦、適應力強、樂於學習新知。</p>
+            <h4>優點：</h4>
+            <p>經營管理能力強、具備國際視野、數據分析能力佳、善於決策。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>經濟學、會計學、行銷管理、財務管理、國際貿易實務、資料庫管理、電子商務、物流管理、不動產法規與實務等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>外語群</h3>
+          <div class="subjects">
+            <span class="subject">應用外語科（英文組）</span>
+            <span class="subject">應用外語科（日文組）</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>善於溝通、對語言有興趣、開放、適應力強、具有文化敏感度。</p>
+            <h4>優點：</h4>
+            <p>語言能力強、跨文化溝通能力佳、國際視野廣闊、適應不同環境的能力強。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>英語/日語聽說讀寫、商業英語/日語、翻譯實務、跨文化溝通、第二外語（如西班牙語、德語等）、國際貿易實務等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>設計群</h3>
+          <div class="subjects">
+            <span class="subject">家具木工科</span>
+            <span class="subject">美工科</span>
+            <span class="subject">陶瓷工程科</span>
+            <span class="subject">室內空間設計科</span>
+            <span class="subject">圖文傳播科</span>
+            <span class="subject">金屬工藝科</span>
+            <span class="subject">家具設計科</span>
+            <span class="subject">廣告設計科</span>
+            <span class="subject">多媒體設計科</span>
+            <span class="subject">多媒體應用科</span>
+            <span class="subject">室內設計科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>富有創意、審美能力強、細心、有耐心、善於表達、具有藝術天分。</p>
+            <h4>優點：</h4>
+            <p>創意思維能力強、視覺表達能力佳、善於解決設計問題、具備專業美學素養。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>色彩學、設計素描、電腦輔助設計、版面編排、3D建模、動畫製作、木工技術、金屬加工、陶瓷製作、室內設計原理等。</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="category">
+        <h2>農業類</h2>
+        
+        <div class="group">
+          <h3>農業群</h3>
+          <div class="subjects">
+            <span class="subject">農場經營科</span>
+            <span class="subject">園藝科</span>
+            <span class="subject">森林科</span>
+            <span class="subject">野生動物保育科</span>
+            <span class="subject">造園科</span>
+            <span class="subject">畜產保健科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>熱愛自然、有耐心、細心、具有生態意識、喜歡戶外工作。</p>
+            <h4>優點：</h4>
+            <p>對自然生態系統理解深入、具備永續發展意識、實作能力強、適應力佳。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>農業概論、作物栽培、園藝學、森林經營、野生動物生態學、景觀設計、畜牧學、動物醫學概論等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>食品群</h3>
+          <div class="subjects">
+            <span class="subject">食品加工科</span>
+            <span class="subject">食品科</span>
+            <span class="subject">水產食品科</span>
+            <span class="subject">烘焙科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>細心、有耐心、注重衛生、具有創意、喜歡烹飪。</p>
+            <h4>優點：</h4>
+            <p>食品加工技術扎實、具備食品安全意識、創新能力強、品質管理能力佳。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>食品化學、食品微生物學、食品加工與保藏、食品衛生與安全、營養學、烘焙技術、水產食品加工等。</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="category">
+        <h2>家事類</h2>
+        
+        <div class="group">
+          <h3>家政群</h3>
+          <div class="subjects">
+            <span class="subject">家政科</span>
+            <span class="subject">服裝科</span>
+            <span class="subject">幼兒保育科</span>
+            <span class="subject">美容科</span>
+            <span class="subject">時尚模特兒科</span>
+            <span class="subject">流行服飾科</span>
+            <span class="subject">時尚造型科</span>
+            <span class="subject">照顧服務科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>耐心、細心、善於溝通、有同理心、具備美感、喜歡照顧他人。</p>
+            <h4>優點：</h4>
+            <p>服務態度佳、具備專業照顧知識、審美能力強、善於人際互動。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>家政學、服裝設計與製作、幼兒發展與教育、美容美髮技術、時尚造型設計、老人與身心障礙照顧等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>餐旅群</h3>
+          <div class="subjects">
+            <span class="subject">觀光事業科</span>
+            <span class="subject">餐飲管理科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>熱情開朗、善於溝通、適應力強、具有服務精神、喜歡與人接觸。</p>
+            <h4>優點：</h4>
+            <p>服務技能專業、具備國際視野、應變能力強、團隊合作能力佳。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>餐飲管理、觀光概論、旅館管理、導覽解說、餐飲服務技巧、烹飪技術、調酒與飲料調製、旅遊行程規劃等。</p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="category">
+        <h2>海事水產類</h2>
+        
+        <div class="group">
+          <h3>水產群</h3>
+          <div class="subjects">
+            <span class="subject">漁業科</span>
+            <span class="subject">水產養殖科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>喜愛海洋、耐心、細心、具有冒險精神、適應力強。</p>
+            <h4>優點：</h4>
+            <p>對海洋生態系統理解深入、具備專業養殖技能、適應海上工作環境能力強。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>水產生物學、漁具漁法、水產養殖技術、水域生態學、漁業資源管理、水產品加工等。</p>
+          </div>
+        </div>
+        
+        <div class="group">
+          <h3>海事群</h3>
+          <div class="subjects">
+            <span class="subject">輪機科</span>
+            <span class="subject">航海科</span>
+          </div>
+          <div class="personality">
+            <h4>適合的性格特質：</h4>
+            <p>冷靜、細心、具有責任感、適應力強、喜歡挑戰。</p>
+            <h4>優點：</h4>
+            <p>專業航海知識扎實、具備國際視野、應變能力強、具有團隊合作精神。</p>
+          </div>
+          <div class="learning-content">
+            <h4>主要學習內容：</h4>
+            <p>航海學、船舶機械、海上安全、海事法規、船舶通信、船舶操縱、輪機工程、船舶電機等。</p>
+          </div>
+        </div>
+      </div>
+  
+      <p class="note">註：本表格根據最新的台灣技職教育體系整理而成，實際開設科別和課程內容可能因學校而異。每個人的性格特質和優點都是獨特的，上述描述僅供參考。建議同學在選擇就讀科系時，除了考慮個人性格和優點外，還要進一步查詢各校的具體資訊，並考慮個人興趣、能力和未來職業發展方向。每個群科都有其獨特的學習內容和就業前景，選擇適合自己的群科將是邁向成功的重要一步。</p>
+  
+      <a href="https://tyctw.github.io/Vocational-/Professional_subjects.html" class="btn">了解更多未來技職考科</a>
+    </main>
+  </body></html>
