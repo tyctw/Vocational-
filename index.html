@@ -1,734 +1,796 @@
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>113年桃園區高中職科別與學校對照表</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
-:root {
-  --primary-color: #3498db;
-  --secondary-color: #2ecc71;
-  --accent-color: #e74c3c;
-  --background-color: #f9f9f9;
-  --text-color: #333;
-  --card-bg-color: #ffffff;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2ecc71;
+      --accent-color: #e74c3c;
+      --background-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg-color: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 2rem;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px var(--shadow-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+    }
+    
+    h1, h2 {
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    
+    h1 { font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; }
+    h2 { font-size: 1.6rem; font-weight: 300; }
+    
+    .search-container {
+      grid-column: 1 / -1;
+      margin-bottom: 2rem;
+    }
+    
+    .search-container form {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .search-container input[type="text"] {
+      flex-grow: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      font-size: 1rem;
+      box-shadow: inset 0 2px 5px var(--shadow-color);
+      transition: var(--transition);
+    }
+    
+    .search-container input[type="text"]:focus {
+      outline: none;
+      box-shadow: inset 0 2px 5px var(--shadow-color), 0 0 0 3px var(--secondary-color);
+    }
+    
+    .search-container button {
+      padding: 12px 25px;
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 0 30px 30px 0;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .search-container button:hover {
+      background-color: #c0392b;
+      transform: translateY(-2px);
+    }
+    
+    .sidebar {
+      grid-column: 1 / 2;
+    }
+    
+    .stats-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stats-box {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--card-bg-color);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px var(--shadow-color);
+      transition: var(--transition);
+    }
+    
+    .stats-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px var(--shadow-color);
+    }
+    
+    .stats-box h4 {
+      margin-top: 0;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stats-box p {
+      font-size: 2.2rem;
+      font-weight: bold;
+      margin: 0;
+      color: var(--accent-color);
+    }
+    
+    .chart-container {
+      background-color: var(--card-bg-color);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px var(--shadow-color);
+    }
+    
+    .main-content {
+      grid-column: 2 / -1;
+    }
+    
+    .group {
+      background-color: var(--card-bg-color);
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px var(--shadow-color);
+      transition: var(--transition);
+    }
+    
+    .group:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px var(--shadow-color);
+    }
+    
+    .group h3 {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+    }
+    
+    .group h3 i {
+      margin-right: 10px;
+      font-size: 1.8rem;
+      color: var(--accent-color);
+    }
+    
+    .department-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .department-card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+    
+    .department-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .department-card h4 {
+      color: var(--primary-color);
+      margin-top: 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .department-card p {
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .department-card .code {
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+    
+    .department-card .schools {
+      font-size: 0.8rem;
+      color: #666;
+    }
+    
+    .note {
+      font-style: italic;
+      color: #666;
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      background-color: var(--card-bg-color);
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px var(--shadow-color);
+    }
+    
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+      
+      header {
+        padding: 2rem 0;
+      }
+    
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.2rem; }
+    
+      .sidebar, .main-content {
+        grid-column: 1 / -1;
+      }
+    
+      .group {
+        padding: 1rem;
+      }
+      
+      .search-container input[type="text"] {
+        width: 60%;
+      }
+      
+      .group h3 {
+        font-size: 1.4rem;
+      }
+      
+      .department-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+    
+      .stats-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    
+      .stats-box {
+        flex-basis: calc(50% - 0.5rem);
+        padding: 1rem;
+      }
+    
+      .stats-box h4 {
+        font-size: 0.9rem;
+      }
+    
+      .stats-box p {
+        font-size: 1.8rem;
+      }
+    
+      .chart-container {
+        overflow-x: auto;
+      }
+    
+      #departmentsChart {
+        min-width: 500px;
+      }
+    }
+    
+    .animation-fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--accent-color);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 2px 10px var(--shadow-color);
+    }
+    
+    .scroll-to-top:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+    
+    .scroll-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-menu {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .mobile-menu {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--primary-color);
+        padding: 10px;
+        justify-content: space-around;
+        box-shadow: 0 -2px 10px var(--shadow-color);
+        z-index: 1000;
+      }
+    
+      .mobile-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: var(--transition);
+      }
+    
+      .mobile-menu a:hover {
+        color: var(--accent-color);
+        transform: translateY(-3px);
+      }
+    
+      .mobile-menu i {
+        font-size: 1.3rem;
+        margin-bottom: 3px;
+      }
+    
+      .container {
+        padding-bottom: 70px;
+      }
+    
+      .scroll-to-top {
+        bottom: 70px;
+      }
+    }
+    /* 新增頁首樣式 */
+.top-nav {
+  background-color: var(--primary-color);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-body {
-  font-family: 'Noto Sans TC', 'Roboto', sans-serif;
-  background-color: var(--background-color);
+.top-nav ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 2rem;
-}
-
-header {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: white;
-  text-align: center;
-  padding: 3rem 0;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 20px var(--shadow-color);
-  position: relative;
-  overflow: hidden;
-}
-
-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
-  transform: rotate(30deg);
-}
-
-h1, h2 {
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  position: relative;
-}
-
-h1 { font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; }
-h2 { font-size: 1.6rem; font-weight: 300; }
-
-.search-container {
-  grid-column: 1 / -1;
-  margin-bottom: 2rem;
-}
-
-.search-container form {
-  display: flex;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.search-container input[type="text"] {
-  flex-grow: 1;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 30px 0 0 30px;
-  font-size: 1rem;
-  box-shadow: inset 0 2px 5px var(--shadow-color);
-  transition: var(--transition);
-}
-
-.search-container input[type="text"]:focus {
-  outline: none;
-  box-shadow: inset 0 2px 5px var(--shadow-color), 0 0 0 3px var(--secondary-color);
-}
-
-.search-container button {
-  padding: 12px 25px;
-  background-color: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 0 30px 30px 0;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: var(--transition);
-}
-
-.search-container button:hover {
-  background-color: #c0392b;
-  transform: translateY(-2px);
-}
-
-.sidebar {
-  grid-column: 1 / 2;
-}
-
-.stats-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.stats-box {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: var(--card-bg-color);
-  border-radius: 15px;
-  box-shadow: 0 5px 15px var(--shadow-color);
-  transition: var(--transition);
-}
-
-.stats-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px var(--shadow-color);
-}
-
-.stats-box h4 {
-  margin-top: 0;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.stats-box p {
-  font-size: 2.2rem;
-  font-weight: bold;
-  margin: 0;
-  color: var(--accent-color);
-}
-
-.chart-container {
-  background-color: var(--card-bg-color);
-  border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 5px 15px var(--shadow-color);
-}
-
-.main-content {
-  grid-column: 2 / -1;
-}
-
-.group {
-  background-color: var(--card-bg-color);
-  border-radius: 20px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 5px 15px var(--shadow-color);
-  transition: var(--transition);
-}
-
-.group:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px var(--shadow-color);
-}
-
-.group h3 {
-  color: var(--primary-color);
-  border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 0.5rem;
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  font-size: 1.6rem;
-}
-
-.group h3 i {
-  margin-right: 10px;
-  font-size: 1.8rem;
-  color: var(--accent-color);
-}
-
-.department-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.department-card {
-  background-color: #f8f9fa;
-  border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-  transition: var(--transition);
-}
-
-.department-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.department-card h4 {
-  color: var(--primary-color);
-  margin-top: 0;
-  font-size: 1.1rem;
-  border-bottom: 1px solid var(--accent-color);
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.department-card p {
-  margin: 0.3rem 0;
-  font-size: 0.9rem;
-}
-
-.department-card .code {
-  font-weight: bold;
-  color: var(--accent-color);
-}
-
-.department-card .schools {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.note {
-  font-style: italic;
-  color: #666;
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  background-color: var(--card-bg-color);
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px var(--shadow-color);
-}
-
-footer {
-  background-color: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 1.5rem 0;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-  .container {
-    grid-template-columns: 1fr;
-    padding: 15px;
-  }
-  
-  header {
-    padding: 2rem 0;
-  }
-
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.2rem; }
-
-  .sidebar, .main-content {
-    grid-column: 1 / -1;
-  }
-
-  .group {
-    padding: 1rem;
-  }
-  
-  .search-container input[type="text"] {
-    width: 60%;
-  }
-  
-  .group h3 {
-    font-size: 1.4rem;
-  }
-  
-  .department-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .scroll-to-top {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  .stats-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .stats-box {
-    flex-basis: calc(50% - 0.5rem);
-    padding: 1rem;
-  }
-
-  .stats-box h4 {
-    font-size: 0.9rem;
-  }
-
-  .stats-box p {
-    font-size: 1.8rem;
-  }
-
-  .chart-container {
-    overflow-x: auto;
-  }
-
-  #departmentsChart {
-    min-width: 500px;
-  }
-}
-
-.animation-fade-in {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.scroll-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--accent-color);
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  cursor: pointer;
+}
+
+.top-nav li {
+  margin: 0 15px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
   transition: var(--transition);
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0 2px 10px var(--shadow-color);
 }
 
-.scroll-to-top:hover {
-  background-color: var(--secondary-color);
-  transform: translateY(-3px);
+.top-nav a:hover {
+  color: var(--accent-color);
 }
 
-.scroll-to-top.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.mobile-menu {
-  display: none;
-}
+/* 其他樣式保持不變 */
+/* ... */
 
 @media (max-width: 768px) {
-  .mobile-menu {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--primary-color);
-    padding: 10px;
-    justify-content: space-around;
-    box-shadow: 0 -2px 10px var(--shadow-color);
-    z-index: 1000;
+  .top-nav {
+    padding: 5px 0;
   }
 
-  .mobile-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: var(--transition);
+  .top-nav ul {
+    flex-wrap: wrap;
   }
 
-  .mobile-menu a:hover {
-    color: var(--accent-color);
-    transform: translateY(-3px);
+  .top-nav li {
+    margin: 5px 10px;
   }
-
-  .mobile-menu i {
-    font-size: 1.3rem;
-    margin-bottom: 3px;
-  }
-
-  .container {
-    padding-bottom: 70px;
-  }
-
-  .scroll-to-top {
-    bottom: 70px;
-  }
+  
+  /* 其他響應式樣式保持不變 */
+  /* ... */
 }
+    </style>
+    </head><body>
 
-</style>
-</head><body>
-<header>
-  <h1><i class="fas fa-graduation-cap"></i> 113年桃園區高中職科別與學校對照表</h1>
-  <h2>統計資訊與科系分析</h2>
-</header>
 
-<div class="container">
-  <div class="search-container">
-    <form action="/search" method="GET">
-      <input type="text" name="keyword" placeholder="輸入科別或學校關鍵字">
-      <button type="submit"><i class="fas fa-search"></i></button>
-    </form>
-  </div>
-
-  <aside class="sidebar">
-    <div class="stats-container animation-fade-in">
-      <div class="stats-box">
-        <h4><i class="fas fa-book"></i> 總科系數</h4>
-        <p id="total-departments"></p>
+        <!-- 新增可跳轉的頁首 -->
+<nav class="top-nav">
+    <ul>
+      <li><a href="https://sites.google.com/view/tyctw/"><i class="fas fa-home"></i> 回到主網頁</a></li>
+      <li><a href="https://tyctw.github.io/"><i class="fas fa-school"></i> 落點分析系統</a></li>
+      <li><a href="https://tyctw.github.io/sequence/"><i class="fas fa-book"></i> 序位推估</a></li>
+      <li><a href="https://tyctw.github.io/Admission/"><i class="fas fa-chart-bar"></i> 各校錄取完整分數</a></li>
+      <li><a href="https://tyctw.github.io/tyc/"><i class="fas fa-info-circle"></i> 桃園會考錄取分數查詢</a></li>
+    </ul>
+  </nav>
+    <header>
+      <h1><i class="fas fa-graduation-cap"></i> 113年桃園區高中職科別與學校對照表</h1>
+      <h2>統計資訊與科系分析</h2>
+    </header>
+    
+    <div class="container">
+      <div class="search-container">
+        <form action="/search" method="GET">
+          <input type="text" name="keyword" placeholder="輸入科別或學校關鍵字">
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
       </div>
-      <div class="stats-box">
-        <h4><i class="fas fa-school"></i> 總學校數</h4>
-        <p id="total-schools"></p>
-      </div>
-      <div class="stats-box">
-        <h4><i class="fas fa-award"></i> 最多科系的群別</h4>
-        <p id="most-departments"></p>
-      </div>
+    
+      <aside class="sidebar">
+        <div class="stats-container animation-fade-in">
+          <div class="stats-box">
+            <h4><i class="fas fa-book"></i> 總科系數</h4>
+            <p id="total-departments"></p>
+          </div>
+          <div class="stats-box">
+            <h4><i class="fas fa-school"></i> 總學校數</h4>
+            <p id="total-schools"></p>
+          </div>
+          <div class="stats-box">
+            <h4><i class="fas fa-award"></i> 最多科系的群別</h4>
+            <p id="most-departments"></p>
+          </div>
+        </div>
+    
+        <div class="chart-container animation-fade-in">
+          <canvas id="departmentsChart"></canvas>
+        </div>
+      </aside>
+    
+      <main class="main-content">
+        <div class="group animation-fade-in">
+          <h3><i class="fas fa-cogs"></i> 機械群</h3>
+          <div class="department-grid">
+            <div class="department-card">
+              <h4>機械科</h4>
+              <p class="code">科別代碼：301</p>
+              <p class="schools">招生學校：北科附工(及進修部)、龍潭高中、光啟高中、新興高中、世紀綠能工商</p>
+            </div>
+            <div class="department-card">
+              <h4>模具科「產特」</h4>
+              <p class="code">科別代碼：338</p>
+              <p class="schools">招生學校：北科附工(及進修部)</p>
+            </div>
+            <div class="department-card">
+              <h4>機電科</h4>
+              <p class="code">科別代碼：360</p>
+              <p class="schools">招生學校：六和高中</p>
+            </div>
+            <div class="department-card">
+              <h4>生物產業機電科</h4>
+              <p class="code">科別代碼：372</p>
+              <p class="schools">招生學校：北科附工</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="group animation-fade-in">
+          <h3><i class="fas fa-car"></i> 動力機械群</h3>
+          <div class="department-grid">
+            <div class="department-card">
+              <h4>汽車科</h4>
+              <p class="code">科別代碼：303</p>
+              <p class="schools">招生學校：北科附工(及進修部)、光啟高中、啟英高中、清華高中、新興高中、大興高中、世紀綠能工商、永平工商(及進修部)</p>
+            </div>
+            <div class="department-card">
+              <h4>軌道車輛科「產特」</h4>
+              <p class="code">科別代碼：380</p>
+              <p class="schools">招生學校：清華高中</p>
+            </div>
+            <div class="department-card">
+              <h4>飛機修護科</h4>
+              <p class="code">科別代碼：381</p>
+              <p class="schools">招生學校：新興高中、大興高中、方曙商工</p>
+            </div>
+            <div class="department-card">
+              <h4>動力機械科</h4>
+              <p class="code">科別代碼：392</p>
+              <p class="schools">招生學校：北科附工</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="group animation-fade-in">
+          <h3><i class="fas fa-microchip"></i> 電機與電子群</h3>
+          <div class="department-grid">
+            <div class="department-card">
+              <h4>資訊科</h4>
+              <p class="code">科別代碼：305</p>
+              <p class="schools">招生學校：楊梅高中、育達高中(及進修部)、六和高中、治平高中、振聲高中(及進修部)、啟英高中、清華高中、新興高中、大興高中、世紀綠能工商、方曙商工</p>
+            </div>
+            <div class="department-card">
+              <h4>電子科</h4>
+              <p class="code">科別代碼：306</p>
+              <p class="schools">招生學校：北科附工(及進修部)、龍潭高中、楊梅高中、新興高中、治平高中</p>
+            </div>
+            <div class="department-card">
+              <h4>電機科</h4>
+              <p class="code">科別代碼：308</p>
+              <p class="schools">招生學校：北科附工(及進修部)、龍潭高中(及進修部)、治平高中、光啟高中、大興高中</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="group animation-fade-in">
+          <h3><i class="fas fa-flask"></i> 化工群</h3>
+          <div class="department-grid">
+            <div class="department-card">
+              <h4>化工科</h4>
+              <p class="code">科別代碼：315</p>
+              <p class="schools">招生學校：北科附工(及進修部)、觀音高中</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="group animation-fade-in">
+          <h3><i class="fas fa-chart-line"></i> 商業與管理群</h3>
+          <div class="department-grid">
+            <div class="department-card">
+              <h4>農產行銷科</h4>
+              <p class="code">科別代碼：215</p>
+              <p class="schools">招生學校：至善高中</p>
+            </div>
+            <div class="department-card">
+              <h4>商業經營科</h4>
+              <p class="code">科別代碼：401</p>
+              <p class="schools">招生學校：中壢高商(及進修部)、中壢家商、育達高中、振聲高中、新興高中</p>
+            </div>
+            <div class="department-card">
+              <h4>國際貿易科</h4>
+              <p class="code">科別代碼：402</p>
+              <p class="schools">招生學校：中壢高商、壽山高中、振聲高中、新興高中</p>
+            </div>
+            <div class="department-card">
+              <h4>會計事務科</h4>
+              <p class="code">科別代碼：403</p>
+              <p class="schools">招生學校：育達高中</p>
+            </div>
+            <div class="department-card">
+              <h4>資料處理科</h4>
+              <p class="code">科別代碼：404</p>
+              <p class="schools">招生學校：中壢高商(及進修部)、中壢家商、育達高中(及進修部)、治平高中、啟英高中(及進修部)、新興高中、永平工商(及進修部)</p>
+            </div>
+            <div class="department-card">
+              <h4>電子商務科</h4>
+              <p class="code">科別代碼：425</p>
+              <p class="schools">招生學校：治平高中、振聲高中、啟英高中、新興高中</p>
+            </div>
+            <div class="department-card">
+              <h4>流通管理科</h4>
+              <p class="code">科別代碼：426</p>
+              <p class="schools">招生學校：啟英高中</p>
+            </div>
+          </div>
+        </div>
+    
+        <p class="note"><i class="fas fa-info-circle"></i> 註：「產特」表示產業特殊需求類科</p>
+      </main>
     </div>
-
-    <div class="chart-container animation-fade-in">
-      <canvas id="departmentsChart"></canvas>
+    
+    <div class="scroll-to-top" id="scrollToTop">
+      <i class="fas fa-chevron-up"></i>
     </div>
-  </aside>
-
-  <main class="main-content">
-    <div class="group animation-fade-in">
-      <h3><i class="fas fa-cogs"></i> 機械群</h3>
-      <div class="department-grid">
-        <div class="department-card">
-          <h4>機械科</h4>
-          <p class="code">科別代碼：301</p>
-          <p class="schools">招生學校：北科附工(及進修部)、龍潭高中、光啟高中、新興高中、世紀綠能工商</p>
-        </div>
-        <div class="department-card">
-          <h4>模具科「產特」</h4>
-          <p class="code">科別代碼：338</p>
-          <p class="schools">招生學校：北科附工(及進修部)</p>
-        </div>
-        <div class="department-card">
-          <h4>機電科</h4>
-          <p class="code">科別代碼：360</p>
-          <p class="schools">招生學校：六和高中</p>
-        </div>
-        <div class="department-card">
-          <h4>生物產業機電科</h4>
-          <p class="code">科別代碼：372</p>
-          <p class="schools">招生學校：北科附工</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="group animation-fade-in">
-      <h3><i class="fas fa-car"></i> 動力機械群</h3>
-      <div class="department-grid">
-        <div class="department-card">
-          <h4>汽車科</h4>
-          <p class="code">科別代碼：303</p>
-          <p class="schools">招生學校：北科附工(及進修部)、光啟高中、啟英高中、清華高中、新興高中、大興高中、世紀綠能工商、永平工商(及進修部)</p>
-        </div>
-        <div class="department-card">
-          <h4>軌道車輛科「產特」</h4>
-          <p class="code">科別代碼：380</p>
-          <p class="schools">招生學校：清華高中</p>
-        </div>
-        <div class="department-card">
-          <h4>飛機修護科</h4>
-          <p class="code">科別代碼：381</p>
-          <p class="schools">招生學校：新興高中、大興高中、方曙商工</p>
-        </div>
-        <div class="department-card">
-          <h4>動力機械科</h4>
-          <p class="code">科別代碼：392</p>
-          <p class="schools">招生學校：北科附工</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="group animation-fade-in">
-      <h3><i class="fas fa-microchip"></i> 電機與電子群</h3>
-      <div class="department-grid">
-        <div class="department-card">
-          <h4>資訊科</h4>
-          <p class="code">科別代碼：305</p>
-          <p class="schools">招生學校：楊梅高中、育達高中(及進修部)、六和高中、治平高中、振聲高中(及進修部)、啟英高中、清華高中、新興高中、大興高中、世紀綠能工商、方曙商工</p>
-        </div>
-        <div class="department-card">
-          <h4>電子科</h4>
-          <p class="code">科別代碼：306</p>
-          <p class="schools">招生學校：北科附工(及進修部)、龍潭高中、楊梅高中、新興高中、治平高中</p>
-        </div>
-        <div class="department-card">
-          <h4>電機科</h4>
-          <p class="code">科別代碼：308</p>
-          <p class="schools">招生學校：北科附工(及進修部)、龍潭高中(及進修部)、治平高中、光啟高中、大興高中</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="group animation-fade-in">
-      <h3><i class="fas fa-flask"></i> 化工群</h3>
-      <div class="department-grid">
-        <div class="department-card">
-          <h4>化工科</h4>
-          <p class="code">科別代碼：315</p>
-          <p class="schools">招生學校：北科附工(及進修部)、觀音高中</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="group animation-fade-in">
-      <h3><i class="fas fa-chart-line"></i> 商業與管理群</h3>
-      <div class="department-grid">
-        <div class="department-card">
-          <h4>農產行銷科</h4>
-          <p class="code">科別代碼：215</p>
-          <p class="schools">招生學校：至善高中</p>
-        </div>
-        <div class="department-card">
-          <h4>商業經營科</h4>
-          <p class="code">科別代碼：401</p>
-          <p class="schools">招生學校：中壢高商(及進修部)、中壢家商、育達高中、振聲高中、新興高中</p>
-        </div>
-        <div class="department-card">
-          <h4>國際貿易科</h4>
-          <p class="code">科別代碼：402</p>
-          <p class="schools">招生學校：中壢高商、壽山高中、振聲高中、新興高中</p>
-        </div>
-        <div class="department-card">
-          <h4>會計事務科</h4>
-          <p class="code">科別代碼：403</p>
-          <p class="schools">招生學校：育達高中</p>
-        </div>
-        <div class="department-card">
-          <h4>資料處理科</h4>
-          <p class="code">科別代碼：404</p>
-          <p class="schools">招生學校：中壢高商(及進修部)、中壢家商、育達高中(及進修部)、治平高中、啟英高中(及進修部)、新興高中、永平工商(及進修部)</p>
-        </div>
-        <div class="department-card">
-          <h4>電子商務科</h4>
-          <p class="code">科別代碼：425</p>
-          <p class="schools">招生學校：治平高中、振聲高中、啟英高中、新興高中</p>
-        </div>
-        <div class="department-card">
-          <h4>流通管理科</h4>
-          <p class="code">科別代碼：426</p>
-          <p class="schools">招生學校：啟英高中</p>
-        </div>
-      </div>
-    </div>
-
-    <p class="note"><i class="fas fa-info-circle"></i> 註：「產特」表示產業特殊需求類科</p>
-  </main>
-</div>
-
-<div class="scroll-to-top" id="scrollToTop">
-  <i class="fas fa-chevron-up"></i>
-</div>
-
-<footer>
-  <p>&copy; 2024 TYCTW會考落點分析平台. All rights reserved.</p>
-  <p>資料來源：桃園市政府教育局</p>
-</footer>
-
-<nav class="mobile-menu">
-  <a href="#"><i class="fas fa-home"></i>首頁</a>
-  <a href="#"><i class="fas fa-search"></i>搜尋</a>
-  <a href="#"><i class="fas fa-chart-bar"></i>統計</a>
-  <a href="#"><i class="fas fa-info-circle"></i>關於</a>
-</nav>
-
-<script>
-document.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var keyword = document.querySelector('input[name="keyword"]').value.toLowerCase();
-  var groups = document.querySelectorAll('.group');
-  groups.forEach(function(group) {
-    var found = group.innerText.toLowerCase().includes(keyword);
-    group.style.display = found ? 'block' : 'none';
-    if (found) {
-      group.classList.add('animation-fade-in');
-    } else {
-      group.classList.remove('animation-fade-in');
-    }
-  });
-});
-
-// 統計資料
-const groups = document.querySelectorAll('.group');
-const totalDepartments = Array.from(groups).reduce((acc, group) => acc + group.querySelectorAll('.department-card').length, 0);
-document.getElementById('total-departments').textContent = totalDepartments.toString().padStart(2, '0');
-
-const schools = new Set();
-groups.forEach(group => {
-  const schoolCells = group.querySelectorAll('.schools');
-  schoolCells.forEach(cell => {
-    cell.textContent.split('、').forEach(school => schools.add(school.trim()));
-  });
-});
-document.getElementById('total-schools').textContent = schools.size.toString().padStart(2, '0');
-
-const groupCounts = {};
-groups.forEach(group => {
-  const groupName = group.querySelector('h3').textContent.trim();
-  groupCounts[groupName] = group.querySelectorAll('.department-card').length;
-});
-const mostDepartments = Object.keys(groupCounts).reduce((a, b) => groupCounts[a] > groupCounts[b] ? a : b);
-document.getElementById('most-departments').textContent = mostDepartments;
-
-// 圖表
-const ctx = document.getElementById('departmentsChart').getContext('2d');
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: Object.keys(groupCounts),
-    datasets: [{
-      label: '科系數量',
-      data: Object.values(groupCounts),
-      backgroundColor: 'rgba(52, 152, 219, 0.6)',
-      borderColor: 'rgba(52, 152, 219, 1)',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: '科系數量'
+    
+    <footer>
+      <p>&copy; 2024 TYCTW會考落點分析平台. All rights reserved.</p>
+      <p>資料來源：桃園市政府教育局</p>
+    </footer>
+    
+    <nav class="mobile-menu">
+      <a href="#"><i class="fas fa-home"></i>首頁</a>
+      <a href="#"><i class="fas fa-search"></i>搜尋</a>
+      <a href="#"><i class="fas fa-chart-bar"></i>統計</a>
+      <a href="#"><i class="fas fa-info-circle"></i>關於</a>
+    </nav>
+    
+    <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var keyword = document.querySelector('input[name="keyword"]').value.toLowerCase();
+      var groups = document.querySelectorAll('.group');
+      groups.forEach(function(group) {
+        var found = group.innerText.toLowerCase().includes(keyword);
+        group.style.display = found ? 'block' : 'none';
+        if (found) {
+          group.classList.add('animation-fade-in');
+        } else {
+          group.classList.remove('animation-fade-in');
         }
+      });
+    });
+    
+    // 統計資料
+    const groups = document.querySelectorAll('.group');
+    const totalDepartments = Array.from(groups).reduce((acc, group) => acc + group.querySelectorAll('.department-card').length, 0);
+    document.getElementById('total-departments').textContent = totalDepartments.toString().padStart(2, '0');
+    
+    const schools = new Set();
+    groups.forEach(group => {
+      const schoolCells = group.querySelectorAll('.schools');
+      schoolCells.forEach(cell => {
+        cell.textContent.split('、').forEach(school => schools.add(school.trim()));
+      });
+    });
+    document.getElementById('total-schools').textContent = schools.size.toString().padStart(2, '0');
+    
+    const groupCounts = {};
+    groups.forEach(group => {
+      const groupName = group.querySelector('h3').textContent.trim();
+      groupCounts[groupName] = group.querySelectorAll('.department-card').length;
+    });
+    const mostDepartments = Object.keys(groupCounts).reduce((a, b) => groupCounts[a] > groupCounts[b] ? a : b);
+    document.getElementById('most-departments').textContent = mostDepartments;
+    
+    // 圖表
+    const ctx = document.getElementById('departmentsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(groupCounts),
+        datasets: [{
+          label: '科系數量',
+          data: Object.values(groupCounts),
+          backgroundColor: 'rgba(52, 152, 219, 0.6)',
+          borderColor: 'rgba(52, 152, 219, 1)',
+          borderWidth: 1
+        }]
       },
-      x: {
-        title: {
-          display: true,
-          text: '群別'
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: '科系數量'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '群別'
+            }
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: '各群別科系數量統計',
+            font: {
+              size: 16
+            }
+          },
+          legend: {
+            display: false
+          }
         }
       }
-    },
-    plugins: {
-      title: {
-        display: true,
-        text: '各群別科系數量統計',
-        font: {
-          size: 16
+    });
+    
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById("scrollToTop");
+    
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 100) {
+        scrollToTopBtn.classList.add("show");
+      } else {
+        scrollToTopBtn.classList.remove("show");
+      }
+    });
+    
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+    
+    // Mobile menu functionality
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Add functionality for each menu item
+        switch(link.textContent.trim()) {
+          case '首頁':
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            break;
+          case '搜尋':
+            document.querySelector('.search-container input').focus();
+            break;
+          case '統計':
+            document.querySelector('.stats-container').scrollIntoView({behavior: 'smooth'});
+            break;
+          case '關於':
+            // You can add an about section or modal here
+            alert('關於本網站：提供113年桃園區高中職科別與學校對照表資訊');
+            break;
         }
-      },
-      legend: {
-        display: false
+      });
+    });
+    
+    // Adjust chart size for mobile
+    function resizeChart() {
+      const chart = Chart.getChart("departmentsChart");
+      if (chart) {
+        if (window.innerWidth <= 768) {
+          chart.options.maintainAspectRatio = false;
+          chart.canvas.parentNode.style.height = '300px';
+        } else {
+          chart.options.maintainAspectRatio = true;
+          chart.canvas.parentNode.style.height = 'auto';
+        }
+        chart.update();
       }
     }
-  }
-});
-
-// Scroll to top functionality
-const scrollToTopBtn = document.getElementById("scrollToTop");
-
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    scrollToTopBtn.classList.add("show");
-  } else {
-    scrollToTopBtn.classList.remove("show");
-  }
-});
-
-scrollToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-// Mobile menu functionality
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    // Add functionality for each menu item
-    switch(link.textContent.trim()) {
-      case '首頁':
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        break;
-      case '搜尋':
-        document.querySelector('.search-container input').focus();
-        break;
-      case '統計':
-        document.querySelector('.stats-container').scrollIntoView({behavior: 'smooth'});
-        break;
-      case '關於':
-        // You can add an about section or modal here
-        alert('關於本網站：提供112年桃園區高中職科別與學校對照表資訊');
-        break;
-    }
-  });
-});
-
-// Adjust chart size for mobile
-function resizeChart() {
-  const chart = Chart.getChart("departmentsChart");
-  if (chart) {
-    if (window.innerWidth <= 768) {
-      chart.options.maintainAspectRatio = false;
-      chart.canvas.parentNode.style.height = '300px';
-    } else {
-      chart.options.maintainAspectRatio = true;
-      chart.canvas.parentNode.style.height = 'auto';
-    }
-    chart.update();
-  }
-}
-
-window.addEventListener('resize', resizeChart);
-resizeChart(); // Initial call
-
-</script>
-
-</body></html>
+    
+    window.addEventListener('resize', resizeChart);
+    resizeChart(); // Initial call
+    
+    </script>
+    
+    </body></html>
