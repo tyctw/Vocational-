@@ -403,40 +403,73 @@
       }
     }
     /* 新增頁首樣式 */
-.top-nav {
-  background-color: var(--primary-color);
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
+.full-page-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(52, 152, 219, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
 
-.top-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
+    .full-page-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
 
-.top-nav li {
-  margin: 0 15px;
-}
+    .full-page-menu nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
 
-.top-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-}
+    .full-page-menu nav ul li {
+      margin: 20px 0;
+      text-align: center;
+    }
 
-.top-nav a:hover {
-  color: var(--accent-color);
-}
+    .full-page-menu nav ul li a {
+      color: white;
+      font-size: 24px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-/* 其他樣式保持不變 */
-/* ... */
+    .full-page-menu nav ul li a:hover {
+      color: var(--accent-color);
+    }
 
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1002;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background-color: var(--accent-color);
+    }
+
+    .menu-toggle.active {
+      background-color: var(--accent-color);
+    }
+
+    /* 其他樣式保持不變 */
 @media (max-width: 768px) {
   .top-nav {
     padding: 5px 0;
@@ -450,21 +483,24 @@
     margin: 5px 10px;
   }
   
-  /* 其他響應式樣式保持不變 */
-  /* ... */
 }
     </style>
     </head><body>
 
+    <div id="fullPageMenu" class="full-page-menu">
+      <nav>
+        <ul>
+          <li><a href="https://sites.google.com/view/tyctw/"><i class="fas fa-home"></i> 回到主網頁</a></li>
+          <li><a href="https://tyctw.github.io/"><i class="fas fa-school"></i> 落點分析</a></li>
+          <li><a href="https://tyctw.github.io/Navigation/"><i class="fas fa-book"></i> 更多資訊</a></li>
+        </ul>
+      </nav>
+    </div>
 
-        <!-- 新增可跳轉的頁首 -->
-<nav class="top-nav">
-    <ul>
-      <li><a href="https://sites.google.com/view/tyctw/"><i class="fas fa-home"></i> 回到主網頁</a></li>
-      <li><a href="https://tyctw.github.io/"><i class="fas fa-school"></i> 落點分析系統</a></li>
-      <li><a href="https://tyctw.github.io/Navigation/"><i class="fas fa-book"></i> 更多資訊</a></li>
-    </ul>
-  </nav>
+    <button id="menuToggle" class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
     <header>
       <h1><i class="fas fa-graduation-cap"></i> 113年桃園區高中職科別與學校對照表</h1>
       <h2>統計資訊與科系分析</h2>
@@ -472,7 +508,7 @@
     
     <div class="container">
       <div class="search-container">
-        <form action="/search" method="GET">
+        <form id="searchForm">
           <input type="text" name="keyword" placeholder="輸入科別或學校關鍵字">
           <button type="submit"><i class="fas fa-search"></i></button>
         </form>
@@ -646,12 +682,34 @@
     </nav>
     
     <script>
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
       e.preventDefault();
       var keyword = document.querySelector('input[name="keyword"]').value.toLowerCase();
+      searchDepartments(keyword);
+    });
+
+    function searchDepartments(keyword) {
+      fetch('YOUR_WEBAPP_URL', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ keyword: keyword })
+      })
+      .then(response => response.text())
+      .then(data => {
+        updateUI(JSON.parse(data));
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
+    function updateUI(results) {
       var groups = document.querySelectorAll('.group');
       groups.forEach(function(group) {
-        var found = group.innerText.toLowerCase().includes(keyword);
+        var found = results.some(result => group.innerText.toLowerCase().includes(result[0].toLowerCase()));
         group.style.display = found ? 'block' : 'none';
         if (found) {
           group.classList.add('animation-fade-in');
@@ -659,8 +717,8 @@
           group.classList.remove('animation-fade-in');
         }
       });
-    });
-    
+    }
+
     // 統計資料
     const groups = document.querySelectorAll('.group');
     const totalDepartments = Array.from(groups).reduce((acc, group) => acc + group.querySelectorAll('.department-card').length, 0);
@@ -752,7 +810,6 @@
     document.querySelectorAll('.mobile-menu a').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        // Add functionality for each menu item
         switch(link.textContent.trim()) {
           case '首頁':
             window.scrollTo({top: 0, behavior: 'smooth'});
@@ -764,7 +821,6 @@
             document.querySelector('.stats-container').scrollIntoView({behavior: 'smooth'});
             break;
           case '關於':
-            // You can add an about section or modal here
             alert('關於本網站：提供113年桃園區高中職科別與學校對照表資訊');
             break;
         }
@@ -788,7 +844,7 @@
     
     window.addEventListener('resize', resizeChart);
     resizeChart(); // Initial call
-        // 防止複製
+    // 防止複製
     document.addEventListener('copy', function(e) {
       e.preventDefault();
       return false;
@@ -811,6 +867,14 @@
     document.onselectstart = function() {
       return false;
     };
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const fullPageMenu = document.getElementById('fullPageMenu');
+
+    menuToggle.addEventListener('click', () => {
+      fullPageMenu.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
     </script>
     
     </body></html>
