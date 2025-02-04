@@ -1,0 +1,702 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Microsoft JhengHei", sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+  min-height: 100vh;
+  color: #2c3e50;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #4CAF50, #45a049, #388E3C);
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 2.4em;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  display: inline-block;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  border-radius: 2px;
+}
+
+.search-box {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+input[type="text"] {
+  padding: 15px 25px;
+  width: 450px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50px;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 15px rgba(76,175,80,0.2);
+  transform: translateY(-1px);
+}
+
+button {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(76,175,80,0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(76,175,80,0.3);
+}
+
+.filters {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.filters button {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  min-width: 120px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.filters button.active {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+}
+
+.school-card {
+  background-color: white;
+  padding: 30px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.school-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.school-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #4CAF50, #45a049);
+}
+
+.school-name {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding-left: 15px;
+  position: relative;
+}
+
+.school-name i {
+  margin-right: 10px;
+  color: #4CAF50;
+}
+
+.school-type {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 50px;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  color: #495057;
+  margin-left: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.departments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-left: 15px;
+}
+
+.department {
+  background: #f8f9fa;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 0.95em;
+  color: #495057;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.department:hover {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border-color: transparent;
+  cursor: default;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76,175,80,0.2);
+}
+
+.top-banner {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 12px 0;
+  font-size: 0.95em;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.top-banner .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.top-banner span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 40px 0;
+  text-align: center;
+  background: white;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+}
+
+.copyright {
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+
+.copyright p:first-child {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.loading-indicator {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px 30px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+  color: #2c3e50;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.loading-indicator.hidden {
+  display: none;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  margin: 25px 0;
+  text-align: center;
+  animation: errorShake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  box-shadow: 0 5px 15px rgba(255,107,107,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.error-message i {
+  font-size: 1.2em;
+  animation: errorPulse 2s infinite;
+}
+
+@keyframes errorShake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes errorPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile-specific error message styles */
+@media (max-width: 768px) {
+  .error-message {
+    padding: 15px 20px;
+    margin: 15px 0;
+    font-size: 0.9em;
+    flex-direction: column;
+  }
+  
+  .error-message i {
+    font-size: 1.5em;
+  }
+}
+
+/* Enhanced Mobile Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  header {
+    padding: 25px 15px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 1.6em;
+    padding: 0 10px;
+  }
+  
+  .search-box {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px; 
+  }
+  
+  .search-box button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 20px;
+  }
+  
+  .filters {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  
+  .filters button {
+    flex: 1 1 calc(33.333% - 10px);
+    min-width: 0;
+    padding: 10px;
+    font-size: 0.9em;
+  }
+  
+  .school-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .school-name {
+    font-size: 1.2em;
+    padding-right: 10px;
+    line-height: 1.4;
+  }
+  
+  .school-type {
+    margin-left: 10px;
+    padding: 6px 15px;
+    font-size: 0.9em;
+  }
+  
+  .departments {
+    padding-left: 10px;
+    gap: 8px;
+  }
+  
+  .department {
+    padding: 8px 15px;
+    font-size: 0.85em;
+  }
+  
+  .top-banner {
+    padding: 8px 0;
+  }
+  
+  .top-banner .container {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  
+  .loading-indicator {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+  
+  .error-message {
+    padding: 15px 20px;
+    margin: 15px 0;
+    font-size: 0.9em;
+    flex-direction: column;
+  }
+  
+  footer {
+    margin-top: 40px;
+    padding: 30px 15px;
+  }
+  
+  .copyright {
+    font-size: 0.85em;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 380px) {
+  h1 {
+    font-size: 1.4em;
+  }
+  
+  .filters button {
+    flex: 1 1 100%;
+  }
+  
+  .school-name {
+    font-size: 1.1em;
+  }
+  
+  .department {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Add touch-friendly tap targets for mobile */
+@media (hover: none) {
+  button:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(76,175,80,0.2);
+  }
+  
+  .department:hover {
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .school-card:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+}
+
+/* Add smooth scrolling behavior for iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  .container {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Improve tap target sizes for mobile */
+button,
+.department,
+input[type="text"] {
+  min-height: 44px; 
+}
+
+/* Optimize images and icons for retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .school-name i,
+  .school-type i,
+  .department i {
+    font-size: 1.1em;
+  }
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4CAF50;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45a049;
+}
+
+.main-nav {
+  background: white;
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.logo i {
+  color: #4CAF50;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  padding: 80px 20px 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  transition: left 0.3s ease;
+  z-index: 1001;
+}
+
+.nav-menu.active {
+  left: 0;
+}
+
+.nav-menu li {
+  margin-bottom: 15px;
+}
+
+.nav-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 12px 20px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-menu li a:hover {
+  background: #4CAF50;
+  color: white;
+}
+
+.nav-menu li a i {
+  width: 20px;
+  text-align: center;
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #2c3e50;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1002;
+}
+
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-menu-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.mobile-menu-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #2c3e50;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Mobile styles adjustments */
+@media (max-width: 768px) {
+  .nav-menu {
+    width: 100%;
+    max-width: 280px;
+    padding-top: 80px;
+  }
+}
+
+/* Scroll to top button styles */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(76,175,80,0.4);
+}
+
+/* Mobile responsive for scroll to top button */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+  }
+}
