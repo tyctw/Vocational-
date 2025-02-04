@@ -9,7 +9,7 @@
 <body>
   <div class="top-banner">
     <div class="container">
-      <span><i class="fas fa-info-circle"></i> 歡迎使用TYCTW桃園市高中職校科系查詢系統</span>
+      <span><i class="fas fa-info-circle"></i> 歡迎使用桃園市高中職校科系查詢系統</span>
       <span id="currentTime"></span>
     </div>
   </div>
@@ -33,7 +33,7 @@
         <i class="fas fa-spinner fa-spin"></i> 載入中...
       </div>
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 搜尋學校或科系...">
+        <input type="text" id="searchInput" placeholder=" 搜尋學校或科系...">
         <button onclick="search()"><i class="fas fa-search"></i> 搜尋</button>
       </div>
       <div class="filters">
@@ -41,13 +41,35 @@
         <button onclick="filterByType('公立')"><i class="fas fa-building-columns"></i> 公立</button>
         <button onclick="filterByType('私立')"><i class="fas fa-building"></i> 私立</button>
       </div>
+      <div class="statistics-section">
+        <div class="stat-cards">
+          <div class="stat-card">
+            <i class="fas fa-school"></i>
+            <h3>總校數</h3>
+            <div class="stat-number" id="totalSchools">0</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-building-columns"></i>
+            <h3>公立學校</h3>
+            <div class="stat-number" id="publicSchools">0</div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-building"></i>
+            <h3>私立學校</h3>
+            <div class="stat-number" id="privateSchools">0</div>
+          </div>
+        </div>
+        <div class="stats-chart">
+          <canvas id="schoolTypeChart"></canvas>
+        </div>
+      </div>
     </header>
 
     <main id="schoolList"></main>
     
     <footer>
       <div class="copyright">
-        <p>© <span id="currentYear"></span> TYCTW桃聯區高中職校科系查詢系統 版權所有</p>
+        <p> © <span id="currentYear"></span> TYCTW桃園市高中職校科系查詢系統 版權所有</p>
         <p>此網站提供桃園市各高中職校科系資訊查詢服務</p>
       </div>
     </footer>

@@ -2,6 +2,7 @@
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw28WZ-azcMcLiDp2FS4H0MkOEIW4rwuC9N5cxrx2aJhVebEdVxlBmsUgREoXLcTwaO/exec';
 
 let schoolData = [];
+let chartInstance = null;
 
 async function fetchSchoolData() {
   showLoading(true);
@@ -16,6 +17,7 @@ async function fetchSchoolData() {
     }
     schoolData = data;
     renderSchools(schoolData);
+    updateStatistics(schoolData);
   } catch (error) {
     console.error('Error fetching school data:', error);
     showError(error.message || '資料載入失敗，請稍後再試');
@@ -122,6 +124,7 @@ function search() {
            school.departments.some(dept => dept.toLowerCase().includes(searchText));
   });
   renderSchools(filteredSchools);
+  updateStatistics(filteredSchools);
   scrollToTop();
 }
 
@@ -134,7 +137,6 @@ function filterByType(type) {
   if (type === 'all') {
     filteredSchools = schoolData;
   } else {
-    // Convert Chinese type to English for filtering
     const typeMap = {
       '公立': 'public',
       '私立': 'private'
@@ -143,6 +145,7 @@ function filterByType(type) {
   }
   
   renderSchools(filteredSchools);
+  updateStatistics(filteredSchools);
   scrollToTop();
 }
 
@@ -202,8 +205,101 @@ function toggleMobileMenu() {
   }
 }
 
+function updateStatistics(schools) {
+  const totalSchools = schools.length;
+  const publicSchools = schools.filter(s => s.type === 'public').length;
+  const privateSchools = schools.filter(s => s.type === 'private').length;
+  
+  // Update the statistics display with animation
+  animateNumber('totalSchools', totalSchools);
+  animateNumber('publicSchools', publicSchools);
+  animateNumber('privateSchools', privateSchools);
+  
+  // Update the chart
+  updateChart(publicSchools, privateSchools);
+}
+
+function animateNumber(elementId, finalNumber) {
+  const element = document.getElementById(elementId);
+  const duration = 1000; // Animation duration in milliseconds
+  const startNumber = parseInt(element.textContent);
+  const startTime = performance.now();
+  
+  function updateNumber(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function for smooth animation
+    const easeOutQuad = progress => 1 - (1 - progress) * (1 - progress);
+    const currentNumber = Math.round(startNumber + (finalNumber - startNumber) * easeOutQuad(progress));
+    
+    element.textContent = currentNumber;
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateNumber);
+    }
+  }
+  
+  requestAnimationFrame(updateNumber);
+}
+
+function updateChart(publicCount, privateCount) {
+  const ctx = document.getElementById('schoolTypeChart').getContext('2d');
+  
+  // Destroy existing chart if it exists
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+  
+  chartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['公立學校', '私立學校'],
+      datasets: [{
+        data: [publicCount, privateCount],
+        backgroundColor: [
+          '#4CAF50',
+          '#2196F3'
+        ],
+        borderColor: 'white',
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            font: {
+              family: '"Microsoft JhengHei", sans-serif'
+            }
+          }
+        },
+        title: {
+          display: true,
+          text: '學校類型分布',
+          font: {
+            family: '"Microsoft JhengHei", sans-serif',
+            size: 16
+          }
+        }
+      }
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  fetchSchoolData();
+  // Add Chart.js CDN link dynamically
+  const chartScript = document.createElement('script');
+  chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+  document.head.appendChild(chartScript);
+  
+  chartScript.onload = () => {
+    fetchSchoolData();
+  };
+  
   updateYear();
   updateTime();
   
