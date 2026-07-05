@@ -1,0 +1,6 @@
+{
+  "name": "全國高中職查詢系統",
+  "description": "提供查詢全國高中職學校名稱、公私立、縣市、地址、電話、網址等資訊的系統。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
