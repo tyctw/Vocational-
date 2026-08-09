@@ -1051,9 +1051,9 @@ export default function App() {
           </div>
           
           <div className="flex items-center gap-8 text-[14px] font-black uppercase tracking-widest">
-            <a href="https://tyctw.github.io/public/about.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">關於我們</a>
-            <a href="https://tyctw.github.io/public/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">隱私權政策</a>
-            <a href="https://tyctw.github.io/public/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">服務條款</a>
+            <a href={`${import.meta.env.BASE_URL}about.html`} target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">關於我們</a>
+            <a href={`${import.meta.env.BASE_URL}privacy.html`} target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">隱私權政策</a>
+            <a href={`${import.meta.env.BASE_URL}terms.html`} target="_blank" rel="noopener noreferrer" className="hover:text-[#F7C548] hover:underline underline-offset-4 transition-colors">服務條款</a>
           </div>
 
           <div className="text-[12px] font-black text-white/60 text-center md:text-right tracking-widest uppercase">
